@@ -203,7 +203,7 @@ describe("Test database", () => {
         test("Updating the data of a valid user", async () => {
             let result = await client.query(
                 `INSERT INTO users 
-                  (email, username, birVthdate, city, first_name, last_name, password, enabled)
+                  (email, username, birthdate, city, first_name, last_name, password, enabled)
                  VALUES ('user@example.com', 'user', '2024-01-02', 'La Plata', 'Juan', 'Perez', 
                   'hashed_pass_123', true)`
             );
