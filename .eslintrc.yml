@@ -2,7 +2,12 @@ env:
   browser: true
   commonjs: true
   es2021: true
-extends: standard
+  jest: true
+extends:
+  - "@feedzai/eslint-config-feedzai"
 parserOptions:
   ecmaVersion: latest
+plugins:
+  - jest
 rules: {}
+
