@@ -23,7 +23,7 @@ table "users" {
   }
   column "password" {
     null = false
-    type = char(255)
+    type = character_varying(255)
   }
   column "enabled" {
     null = false

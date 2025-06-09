@@ -6,7 +6,7 @@ const {
    * Para una primer etapa, se recomienda importar la propiedad
    * "baseFields" reenombrandola a "expectedFields"
    */
-  baseFields: expectedFields
+  expectedFields
 } = require('./schema_base')
 
 describe('Test database', () => {
@@ -100,8 +100,8 @@ describe('Test database', () => {
     test('Insert a valid user', async () => {
       let result = await client.query(
         `INSERT INTO
-         users (email, username, birthdate, city)
-         VALUES ('user@example.com', 'user', '2024-01-02', 'La Plata')`
+         users (email, username, birthdate, city, first_name, last_name, password, enabled)
+         VALUES ('user@example.com', 'user', '2024-01-02', 'La Plata', 'Juan', 'Perez', 'hashed_pass_123', true)`
       )
 
       expect(result.rowCount).toBe(1)
@@ -120,16 +120,16 @@ describe('Test database', () => {
 
     test('Insert a user with an invalid email', async () => {
       const query = `INSERT INTO
-                     users (email, username, birthdate, city)
-                     VALUES ('user', 'user', '2024-01-02', 'La Plata')`
+                     users (email, username, birthdate, city, first_name, last_name, password, enabled)
+                     VALUES ('user', 'user', '2024-01-02', 'La Plata', 'Juan', 'Perez', 'hashed_pass_123', true)`
 
       await expect(client.query(query)).rejects.toThrow('users_email_check')
     })
 
     test('Insert a user with an invalid birthdate', async () => {
       const query = `INSERT INTO
-                     users (email, username, birthdate, city)
-                     VALUES ('user@example.com', 'user', 'invalid_date', 'La Plata')`
+                     users (email, username, birthdate, city, first_name, last_name, password, enabled)
+                     VALUES ('user@example.com', 'user', 'invalid_date', 'La Plata', 'Juan', 'Perez', 'hashed_pass_123', true)`
 
       await expect(client.query(query)).rejects.toThrow('invalid input syntax for type date')
     })
