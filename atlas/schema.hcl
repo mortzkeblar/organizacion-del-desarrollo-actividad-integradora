@@ -37,6 +37,7 @@ table "users" {
   column "updated_at" {
     null    = true
     type    = timestamptz
+    default = sql("now()")
   }
   column "last_access_time" {
     null    = true
